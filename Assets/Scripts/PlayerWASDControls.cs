@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerWASDControls : MonoBehaviour
+public class PlayerControls : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     public KeyCode moveUp = KeyCode.W;
@@ -13,7 +13,6 @@ public class PlayerWASDControls : MonoBehaviour
     
     public float speed = 10.0f;
 
-    Vector2 target;
 
 
     // Start is called before the first frame update
@@ -21,40 +20,10 @@ public class PlayerWASDControls : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
 
-        target = transform.position;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
-        onKeyMove();
-
-        //onClickMove();
-        
-    }
-
-
-    private void onClickMove()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
-        {
-            if (Input.GetMouseButtonDown(0)) 
-            {
-                 //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                 //Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 
-                //direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-                target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                
-                //rb2d.AddForce(direction * speed);
-            }
-            
-        }
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-    }
-
-    private void onKeyMove()
     {
         var vel = rb2d.velocity;
         if (Input.GetKey(moveUp)) {
@@ -79,6 +48,6 @@ public class PlayerWASDControls : MonoBehaviour
         }
 
         rb2d.velocity = vel;
-    }
 
+    }
 }
